@@ -60,18 +60,21 @@ textarea {
 }
 
 .saveBtn {
-    padding: 0 10px;
-}
-
-.saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #232946;
   color: white;
+  padding: 7px 10px;
+  transition: all .3s ease-in-out;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
+  transition: all .3s ease-in-out;
+}
+
+.saveBtn:hover {
+  background-color: #b8c1ec;
   transition: all .3s ease-in-out;
 }
