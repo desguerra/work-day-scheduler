@@ -7,41 +7,44 @@ $("#currentDay").text(currentDate);
 /* FUNCTIONS */
 
 // create time block row elements
-var createRow = function() {
+var createRows = function() {
     // create elements that make up task item
-    var newRow = $("<div>")
-        .addClass("row");
+    for (var i=9; i<18; i++) {
+        var newRow = $("<div>")
+            .addClass("row");
 
-    var hourDiv = $("<div>")
-        .addClass("col-2");
-    
-    var timeH5 = $("<h5>")
-        .addClass("text-right p-1 hour")
-        .text("9am");
+        var hourDiv = $("<div>")
+            .addClass("col-2");
+        
+        var timeH5 = $("<h5>")
+            .addClass("text-right p-1 hour")
+            .text(i + ":00");
 
-    var textareaDiv = $("<div>")
-        .addClass("col-8");
+        var textareaDiv = $("<div>")
+            .addClass("col-8");
 
-    var textArea = $("<textarea>")
-        .addClass("task-box");
+        var textArea = $("<textarea>")
+            .addClass("task-box");
 
-    var btnDiv = $("<div>")
-        .addClass("col-2");
+        var btnDiv = $("<div>")
+            .addClass("col-2");
 
-    var saveBtn = $("<button>")
-        .addClass("saveBtn");
+        var saveBtn = $("<button>")
+            .addClass("saveBtn");
 
-    var saveIcon = $("<span>")
-        .addClass("oi oi-pin");
+        var saveIcon = $("<span>")
+            .addClass("oi oi-pin");
 
-    hourDiv.append(timeH5);
-    textareaDiv.append(textArea);
-    saveBtn.append(saveIcon);
-    btnDiv.append(saveBtn);
-    $(".container").append(newRow);
-    newRow.append(hourDiv);
-    newRow.append(textareaDiv);
-    newRow.append(btnDiv);
+        hourDiv.append(timeH5);
+        textareaDiv.append(textArea);
+        saveBtn.append(saveIcon);
+        btnDiv.append(saveBtn);
+        newRow.append(hourDiv);
+        newRow.append(textareaDiv);
+        newRow.append(btnDiv);
+        $(".container").append(newRow);
+    };
+
 };
 
 // create task elements
@@ -98,6 +101,10 @@ var saveTasks = function() {
     console.log("saveTasks was called");
 };
 
+/* CALL FUNCTIONS */
+// create initial rows
+createRows();
+
+
 //// TESTING createTask ////
 // createTasks();
-createRow();
