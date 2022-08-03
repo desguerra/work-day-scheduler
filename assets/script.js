@@ -1,6 +1,6 @@
 /* display current day at top of page */
 
-var currentDate = moment().day(0).utcOffset(7 * 60).format("dddd, MMMM D, YYYY");
+var currentDate = moment().utcOffset(-7).format("dddd, MMMM D, YYYY");
 
 $("#currentDay").text(currentDate);
 
@@ -35,6 +35,8 @@ var createRows = function() {
         var saveIcon = $("<span>")
             .addClass("oi oi-pin");
 
+        colorTask(textArea, i);
+
         hourDiv.append(timeH5);
         textareaDiv.append(textArea);
         saveBtn.append(saveIcon);
@@ -43,19 +45,37 @@ var createRows = function() {
         newRow.append(textareaDiv);
         newRow.append(btnDiv);
         $(".container").append(newRow);
+
+        console.log(newRow);
     };
 
 };
 
-// create task elements
-// var createTasks = function() {
-//     // create elements that make up task item
-//     var taskP = $("<p>")
-//         .addClass("m-1")
-//         .text();
+// save task function
+var saveTasks = function() {
+    console.log("saveTasks was called");
+};
 
-//     $(".task-box").append(taskP);
-// };
+// change bg color based on time
+var colorTask = function(textBox, index) {
+
+    var time = moment().utcOffset(-7).format("H");
+
+    $(textBox).removeClass("past present future");
+
+    if (index == time) {
+        $(textBox).addClass("present");
+    }
+    else if (index > time) {
+        $(textBox).addClass("future");
+    }
+    else if (index < time) {
+        $(textBox).addClass("past");
+    }
+    else {
+        console.log("error with color coding");
+    }
+};
 
 // when we click on a task
 $(".task-box").on("click", "p", function() {
@@ -96,15 +116,13 @@ $(".saveBtn").on("click", function() {
     saveTasks();
 });
 
-// save task function
-var saveTasks = function() {
-    console.log("saveTasks was called");
-};
-
 /* CALL FUNCTIONS */
 
 // create initial time block rows
 createRows();
+
+// test coloring tasks
+colorTask();
 
 
 //// TESTING createTask ////
