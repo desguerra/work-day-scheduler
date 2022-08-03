@@ -6,14 +6,52 @@ $("#currentDay").text(currentDate);
 
 /* FUNCTIONS */
 
+// create time block row elements
+var createRow = function() {
+    // create elements that make up task item
+    var newRow = $("<div>")
+        .addClass("row");
+
+    var hourDiv = $("<div>")
+        .addClass("col-2");
+    
+    var timeH5 = $("<h5>")
+        .addClass("text-right p-1 hour")
+        .text("9am");
+
+    var textareaDiv = $("<div>")
+        .addClass("col-8");
+
+    var textArea = $("<textarea>")
+        .addClass("task-box");
+
+    var btnDiv = $("<div>")
+        .addClass("col-2");
+
+    var saveBtn = $("<button>")
+        .addClass("saveBtn");
+
+    var saveIcon = $("<span>")
+        .addClass("oi oi-pin");
+
+    hourDiv.append(timeH5);
+    textareaDiv.append(textArea);
+    saveBtn.append(saveIcon);
+    btnDiv.append(saveBtn);
+    $(".container").append(newRow);
+    newRow.append(hourDiv);
+    newRow.append(textareaDiv);
+    newRow.append(btnDiv);
+};
+
 // create task elements
-var createTasks = function(taskText) {
+var createTasks = function() {
     // create elements that make up task item
     var taskP = $("<p>")
         .addClass("m-1")
-        .text(taskText);
+        .text();
 
-    $("#task-box").append(taskP);
+    $(".task-box").append(taskP);
 };
 
 // when we click on a task
@@ -51,7 +89,7 @@ $(".task-box").on("blur", "textarea", function() {
 });
 
 // when user clicks the save button
-$("#save-btn").on("click", function() {
+$(".saveBtn").on("click", function() {
     saveTasks();
 });
 
@@ -61,4 +99,5 @@ var saveTasks = function() {
 };
 
 //// TESTING createTask ////
-createTasks("hello");
+// createTasks();
+createRow();
