@@ -48,14 +48,14 @@ var createRows = function() {
 };
 
 // create task elements
-var createTasks = function() {
-    // create elements that make up task item
-    var taskP = $("<p>")
-        .addClass("m-1")
-        .text();
+// var createTasks = function() {
+//     // create elements that make up task item
+//     var taskP = $("<p>")
+//         .addClass("m-1")
+//         .text();
 
-    $(".task-box").append(taskP);
-};
+//     $(".task-box").append(taskP);
+// };
 
 // when we click on a task
 $(".task-box").on("click", "p", function() {
@@ -102,7 +102,8 @@ var saveTasks = function() {
 };
 
 /* CALL FUNCTIONS */
-// create initial rows
+
+// create initial time block rows
 createRows();
 
 
