@@ -14,7 +14,7 @@ var createRows = function() {
             .addClass("row");
 
         var hourDiv = $("<div>")
-            .addClass("col-2");
+            .addClass("col-2 hrDiv");
         
         var timeH5 = $("<h5>")
             .addClass("text-right p-1 hour")
@@ -24,10 +24,11 @@ var createRows = function() {
             .addClass("col-8");
 
         var textArea = $("<textarea>")
-            .addClass("task-box");
+            .addClass("task-box")
+            .attr("data-hour", i);
 
         var btnDiv = $("<div>")
-            .addClass("col-2");
+            .addClass("col-2 btnDiv");
 
         var saveBtn = $("<button>")
             .addClass("saveBtn");
@@ -46,14 +47,8 @@ var createRows = function() {
         newRow.append(btnDiv);
         $(".container").append(newRow);
 
-        console.log(newRow);
     };
 
-};
-
-// save task function
-var saveTasks = function() {
-    console.log("saveTasks was called");
 };
 
 // change bg color based on time
@@ -73,8 +68,16 @@ var colorTask = function(textBox, index) {
         $(textBox).addClass("past");
     }
     else {
-        console.log("error with color coding");
+        console.log("color coding testing...");
     }
+};
+
+// save task function
+var saveTask = function(thisTask) {
+
+    var taskText = $(thisTask).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
+    console.log(taskText);
+    
 };
 
 // when we click on a task
@@ -84,7 +87,7 @@ $(".task-box").on("click", "p", function() {
         .trim();
 
     var textInput = $("<textarea>")
-        .addClass("form-control")
+        .addClass("task-box")
         .val(text);
 
     // replace <p> element with <textarea> element created above
@@ -109,11 +112,16 @@ $(".task-box").on("blur", "textarea", function() {
 
     // replace textarea with p element
     $(this).replaceWith(taskP);
+
 });
 
 // when user clicks the save button
-$(".saveBtn").on("click", function() {
-    saveTasks();
+$(".container").on("click", ".saveBtn", function() {
+    saveTask(this);
+
+    // var taskText = $(this).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
+    // console.log(taskText);
+
 });
 
 /* CALL FUNCTIONS */
@@ -121,9 +129,5 @@ $(".saveBtn").on("click", function() {
 // create initial time block rows
 createRows();
 
-// test coloring tasks
+// call coloring tasks after rows are created
 colorTask();
-
-
-//// TESTING createTask ////
-// createTasks();

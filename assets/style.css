@@ -45,18 +45,18 @@ textarea {
 }
 
 .past {
-  background-color: #d4939d;
+  background-color: #594a4e;
   color: white;
 }
 
 .present {
-  background-color: #b8c1ec;
-  color: white;
+  background-color: #d9d4e7;
+  color: #000000;
 }
 
 .future {
-  background-color: #eebbc3;
-  color: white;
+  background-color: #c3f0ca;
+  color: #000000;
 }
 
 .saveBtn {
@@ -75,6 +75,6 @@ textarea {
 }
 
 .saveBtn:hover {
-  background-color: #b8c1ec;
+  background-color: #d9d4e7;
   transition: all .3s ease-in-out;
 }
