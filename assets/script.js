@@ -72,12 +72,29 @@ var colorTask = function(textBox, index) {
     }
 };
 
-// save task function
-var saveTask = function(thisTask) {
+// create tasks function
+var createTask = function() {
+    // TODO!!!!!!
+    console.log("calling createTask()...");
+};
 
+// load tasks function
+var loadTask = function() {
+    // TODO!!!!!
+    //localStorage.getItem("tasks", JSON.stringify(tasks));
+    console.log("calling loadTask()...");
+};
+
+// save tasks function
+var saveTask = function(thisTask) {
+    // TODO!!!!!!!
     var taskText = $(thisTask).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
-    console.log(taskText);
-    
+
+    // if taskText has content, then save into `localStorage`
+    if (taskText) {
+        localStorage.setItem("task", taskText);
+    }
+
 };
 
 // when we click on a task
@@ -117,10 +134,8 @@ $(".task-box").on("blur", "textarea", function() {
 
 // when user clicks the save button
 $(".container").on("click", ".saveBtn", function() {
-    saveTask(this);
 
-    // var taskText = $(this).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
-    // console.log(taskText);
+    saveTask(this);
 
 });
 
