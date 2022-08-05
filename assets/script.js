@@ -50,6 +50,7 @@ var createRows = function() {
         newRow.append(btnDiv);
         $(".container").append(newRow);
 
+        // load saved tasks
         loadTask(textArea, i);
 
     };
@@ -79,10 +80,8 @@ var colorTask = function(textBox, index) {
 
 // load / get from storage function
 var loadTask = function(textArea, index) {
-    //var taskTime = $(thisBtn).parent('.btnDiv').parent('.row').children('.hrDiv').children('.hour').text();
-    //for (var i=9; i<18; i++) {
+
     textArea.val(localStorage.getItem("hour" + index));
-    //}
 
 };
 
