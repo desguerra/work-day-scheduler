@@ -50,9 +50,9 @@ var createRows = function() {
         newRow.append(btnDiv);
         $(".container").append(newRow);
 
-    };
+        loadTask(textArea, i);
 
-    // call getStorage here!!!!!
+    };
 
 };
 
@@ -78,9 +78,12 @@ var colorTask = function(textBox, index) {
 };
 
 // load / get from storage function
-var loadTask = function() {
-    //localStorage.getItem("tasks", JSON.stringify(tasks));
-    console.log("calling loadTask()...");
+var loadTask = function(textArea, index) {
+    //var taskTime = $(thisBtn).parent('.btnDiv').parent('.row').children('.hrDiv').children('.hour').text();
+    //for (var i=9; i<18; i++) {
+    textArea.val(localStorage.getItem("hour" + index));
+    //}
+
 };
 
 // save tasks function
@@ -88,18 +91,6 @@ var saveTask = function(thisBtn) {
     var taskText = $(thisBtn).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
     var taskTime = $(thisBtn).parent('.btnDiv').parent('.row').children('.hrDiv').children('.hour').text();
 
-    // var test = thisBtn;
-
-    console.log(taskTime);
-
-    // if taskText has content, then save into `localStorage`
-    
-    // for (var i=9; i < 18; i++) {
-    //     if (taskText) {
-    //         localStorage.setItem("hour" + i, $(`#text-${i}`).val());
-    //         // console.log($(`#text-${i}`).val()); // testing
-    //     }
-    // };
     if (taskTime.length === 5) {
         var newTime = taskTime[0] + taskTime[1];
     }
@@ -108,7 +99,6 @@ var saveTask = function(thisBtn) {
     }
 
     localStorage.setItem("hour" + newTime, taskText);
-    
     
 };
 
