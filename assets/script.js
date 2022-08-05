@@ -6,6 +6,8 @@ $("#currentDay").text(currentDate);
 
 /* FUNCTIONS */
 
+// make sure rows gen before get storage - put inside create rows
+
 // create time block row elements
 var createRows = function() {
     // create elements that make up task item
@@ -25,13 +27,14 @@ var createRows = function() {
 
         var textArea = $("<textarea>")
             .addClass("task-box")
-            .attr("data-hour", i);
+            .attr("id", "text-" + i); // add unique id
 
         var btnDiv = $("<div>")
             .addClass("col-2 btnDiv");
 
         var saveBtn = $("<button>")
-            .addClass("saveBtn");
+            .addClass("saveBtn")
+            .attr("id", "btn-" + i); // add unique id
 
         var saveIcon = $("<span>")
             .addClass("oi oi-pin");
@@ -48,6 +51,8 @@ var createRows = function() {
         $(".container").append(newRow);
 
     };
+
+    // call getStorage here!!!!!
 
 };
 
@@ -72,29 +77,39 @@ var colorTask = function(textBox, index) {
     }
 };
 
-// create tasks function
-var createTask = function() {
-    // TODO!!!!!!
-    console.log("calling createTask()...");
-};
-
-// load tasks function
+// load / get from storage function
 var loadTask = function() {
-    // TODO!!!!!
     //localStorage.getItem("tasks", JSON.stringify(tasks));
     console.log("calling loadTask()...");
 };
 
 // save tasks function
-var saveTask = function(thisTask) {
-    // TODO!!!!!!!
-    var taskText = $(thisTask).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
+var saveTask = function(thisBtn) {
+    var taskText = $(thisBtn).parent('.btnDiv').parent('.row').children('.col-8').children('.task-box').val();
+    var taskTime = $(thisBtn).parent('.btnDiv').parent('.row').children('.hrDiv').children('.hour').text();
+
+    // var test = thisBtn;
+
+    console.log(taskTime);
 
     // if taskText has content, then save into `localStorage`
-    if (taskText) {
-        localStorage.setItem("task", taskText);
+    
+    // for (var i=9; i < 18; i++) {
+    //     if (taskText) {
+    //         localStorage.setItem("hour" + i, $(`#text-${i}`).val());
+    //         // console.log($(`#text-${i}`).val()); // testing
+    //     }
+    // };
+    if (taskTime.length === 5) {
+        var newTime = taskTime[0] + taskTime[1];
+    }
+    else {
+        var newTime = taskTime[0];
     }
 
+    localStorage.setItem("hour" + newTime, taskText);
+    
+    
 };
 
 // when we click on a task
@@ -133,11 +148,11 @@ $(".task-box").on("blur", "textarea", function() {
 });
 
 // when user clicks the save button
-$(".container").on("click", ".saveBtn", function() {
-
-    saveTask(this);
-
-});
+for (var i=9; i<18; i++) {
+    $(".container").on("click", "#btn-" + i, function() {
+        saveTask(this);
+    });
+};
 
 /* CALL FUNCTIONS */
 
